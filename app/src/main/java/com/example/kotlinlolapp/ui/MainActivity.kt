@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     val project = KotlinLolApp.instance
 
-    val championAdapter = ChampionAdapter(listOf(), this)
+    val championAdapter = ChampionAdapter(project.lstChampions, this)
     lateinit var rvChampions: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,27 +32,5 @@ class MainActivity : AppCompatActivity() {
         //rvChampions.addItemDecoration(DividerItemDecoration( rvChampions.getContext(), requestedOrientation))
 
         rvChampions.adapter = championAdapter
-
-        getAllChampions()
-    }
-
-    fun getAllChampions() {
-        executeOnBackground {
-            // Retrieve breweries
-            when (val result = project.championsManager.retrieveChampions()) {
-                is ResultWrapper.Success -> {
-                    executeOnUi {
-                        result.data?.let {
-                            championAdapter.items = it
-                            championAdapter.notifyDataSetChanged()
-
-                        } ?: Log.w("DEBUG", "Unable to retrieve champions")
-                    }
-                }
-                is ResultWrapper.Error -> {
-                    Log.e("DEBUG", result.throwable.message)
-                }
-            }
-        }
     }
 }

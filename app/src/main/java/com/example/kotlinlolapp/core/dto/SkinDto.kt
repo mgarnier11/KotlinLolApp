@@ -12,13 +12,20 @@ data class SkinDto(
 ) {
     companion object {
 
-        fun fromJson(jsonObject: JSONObject, championId: String ): SkinDto =
-            SkinDto(
+        fun fromJson(jsonObject: JSONObject, championId: String): SkinDto {
+            val imgString = jsonObject.optString("image", null)
+
+            return SkinDto(
                 id = jsonObject.getString("id"),
                 name = jsonObject.getString("name"),
                 num = jsonObject.getInt("num"),
-                image  = ImageDto.fromJson("/img/champion/loading/", championId + "_" + jsonObject.getInt("num")+ ".jpg")
+                image = if (imgString == null) ImageDto.fromApi(
+                    "/img/champion/loading/",
+                    championId + "_" + jsonObject.getInt("num") + ".jpg"
+                ) else ImageDto.fromJson(JSONObject(imgString))
             )
+        }
+
     }
 
     fun toEntity(): SkinEntity {

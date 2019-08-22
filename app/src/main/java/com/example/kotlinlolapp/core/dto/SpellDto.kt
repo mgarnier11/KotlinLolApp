@@ -1,5 +1,6 @@
 package com.example.kotlinlolapp.core.dto
 
+import com.example.kotlinlolapp.logic.KotlinLolApp
 import com.example.kotlinlolapp.logic.SpellEntity
 import org.json.JSONObject
 
@@ -12,13 +13,22 @@ data class SpellDto(
 ) {
     companion object {
 
-        fun fromJson(jsonObject: JSONObject): SpellDto =
-            SpellDto(
+        fun fromJson(jsonObject: JSONObject): SpellDto {
+            val imageObj = JSONObject(jsonObject.getString("image"))
+
+            return SpellDto(
                 id = jsonObject.getString("id"),
                 name = jsonObject.getString("name"),
                 description = jsonObject.getString("description"),
-                image  = ImageDto.fromJson("/9.3.1/img/spell/", jsonObject.getJSONObject("image").getString("full"))
+                image = if (imageObj.optString("full", null) != null)
+                    ImageDto.fromApi(
+                        "/${KotlinLolApp.latestApiVersion}/img/spell/",
+                        imageObj.getString("full")
+                    )
+                else ImageDto.fromJson(imageObj)
             )
+        }
+
     }
 
     fun toEntity(): SpellEntity {

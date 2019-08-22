@@ -14,8 +14,8 @@ internal fun jsonToList(jsonArray: JSONArray): List<JSONObject>? =
  * Retrieve "data" array from a json as String.
  * @param json The json as String.
  */
-internal fun dataArrayFromJson(json: String): JSONArray? =
-    JSONArray(json)
+internal fun jsonStringsArrayToListStrings(jsonArray: JSONArray): List<String>? =
+    jsonArray.let { 0.until(it.length()).map { i -> it.optString(i) } }
 
 /**
  * Retrieve "data" array from a json as String.

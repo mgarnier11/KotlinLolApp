@@ -13,11 +13,16 @@ data class ImageDto(
     companion object {
         private val imagesRootuUrl = "http://ddragon.leagueoflegends.com/cdn"
 
-        fun fromJson(imagePath: String, imageName: String): ImageDto =
+        fun fromApi(imagePath: String, imageName: String): ImageDto =
             ImageDto(
                 name = imageName,
                 url = Uri.parse(imagesRootuUrl + imagePath + imageName)
             )
+
+        fun fromJson(jsonObject: JSONObject): ImageDto = ImageDto(
+            name = jsonObject.getString("name"),
+            url = Uri.parse(jsonObject.getString("url"))
+        )
     }
 
     fun toEntity(): ImageEntity {
