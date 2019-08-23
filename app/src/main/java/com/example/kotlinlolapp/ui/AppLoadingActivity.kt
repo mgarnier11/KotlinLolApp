@@ -10,6 +10,7 @@ import io.reactivex.disposables.Disposable
 import android.support.v4.app.SupportActivity
 import android.support.v4.app.SupportActivity.ExtraData
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.util.Log
 import com.example.kotlinlolapp.R
 
 
@@ -30,6 +31,14 @@ class AppLoadingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app_loading)
 
+        try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
+            Log.w("DEBUG", "Couldnt hide action bar")
+        }
+
+
+
         pbLoading = findViewById(R.id.activity_app_loading_pb_loading)
         tvActualProgress = findViewById(R.id.activity_app_loading_tv_actual_progress)
         tvLoadingLogs = findViewById(R.id.activity_app_loading_tv_loading_logs)
@@ -41,7 +50,11 @@ class AppLoadingActivity : AppCompatActivity() {
             tvActualProgress.text = "${value}%"
             pbLoading.progress = value
 
-            if (it.finished) startActivity(Intent(this, MainActivity::class.java))
+            if (it.finished) {
+                startActivity(Intent(this, MainActivity::class.java))
+
+                finish()
+            }
         })
 
         lstDisposables.add(project.listen(KotlinLolApp.MessageEvent::class.java).subscribe {
@@ -59,6 +72,7 @@ class AppLoadingActivity : AppCompatActivity() {
             tvLoadingLogs.setText(builder.toString())
         })
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

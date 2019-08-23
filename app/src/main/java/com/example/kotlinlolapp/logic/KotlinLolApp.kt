@@ -30,6 +30,8 @@ class KotlinLolApp {
         val instance = KotlinLolApp()
     }
 
+    fun getChampionById(id: String):ChampionEntity = lstChampions.find{c -> c.id == id}!!
+
     fun initApp(context: Context) {
         executeOnBackground {
             val versionSharedPreferences = context.getSharedPreferences("version", Context.MODE_PRIVATE)
