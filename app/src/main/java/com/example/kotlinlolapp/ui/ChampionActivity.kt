@@ -4,6 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -60,6 +63,9 @@ class ChampionActivity : AppCompatActivity() {
     lateinit var tvNameSpell4: TextView
     lateinit var tvDescriptionSpell4: TextView
 
+    val skinAdapter = SkinAdapter(listOf(), this)
+    lateinit var rvSkins: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_champion)
@@ -104,6 +110,14 @@ class ChampionActivity : AppCompatActivity() {
         tvNameSpell4 = findViewById(R.id.activity_champion_tv_spell_name_4)
         tvDescriptionSpell4 = findViewById(R.id.activity_champion_tv_spell_description_4)
 
+        rvSkins = findViewById(R.id.activity_champion_rv_skins)
+
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvSkins.layoutManager = layoutManager
+
+
+        rvSkins.adapter = skinAdapter
+
         reloadUi()
     }
 
@@ -143,5 +157,10 @@ class ChampionActivity : AppCompatActivity() {
         Picasso.get().load(champion.spells[3]?.image?.url).resize(90,90).centerCrop().into(ivSpell4)
         tvNameSpell4.text = champion.spells[3]?.name
         tvDescriptionSpell4.text =  champion.spells[3]?.description
+
+        skinAdapter.items = champion.skins
+
+        skinAdapter.notifyDataSetChanged()
+
     }
 }

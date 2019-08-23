@@ -38,15 +38,9 @@ class ChampionAdapter(var items : List<ChampionEntity>, val context: Context) : 
         Picasso.get().load(champion.baseImage?.url).resize(126, 126).centerCrop().into(holder?.ivImage)
     }
 
-    fun filter(filters: List<Pair<String, Boolean>>) {
-
-    }
-
 
 
     inner class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-        val layout = view.champion_list_item_constraint_layout
-
         val tvName = view.champion_list_item_tv_champion_name
         var tvTitle = view.champion_list_item_tv_champion_title
         var tvTags = view.champion_list_item_tv_champion_tags

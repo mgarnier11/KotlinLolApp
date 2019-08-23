@@ -42,25 +42,24 @@
                 android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/activity_champion_tv_champion_title"
                 android:textAlignment="viewStart" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp" android:textStyle="italic"/>
         <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/activity_champion_pb_attack" android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/activity_champion_tv_champion_tags"
                 app:layout_constraintStart_toEndOf="@+id/activity_champion_tv_label_attack"
-                android:layout_marginStart="8dp" android:max="10"/>
+                android:layout_marginStart="8dp" android:max="10"
+                app:layout_constraintTop_toBottomOf="@+id/activity_champion_divider_3" android:layout_marginTop="8dp"/>
         <TextView
                 android:text="Attack"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/activity_champion_tv_label_attack" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp" android:layout_marginTop="13dp"
-                app:layout_constraintTop_toBottomOf="@+id/activity_champion_tv_champion_tags"
-                android:textStyle="italic"/>
+                android:layout_marginStart="8dp"
+                android:textStyle="italic" app:layout_constraintTop_toBottomOf="@+id/activity_champion_divider_3"
+                android:layout_marginTop="8dp"/>
 
         <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
@@ -253,6 +252,33 @@
                 android:layout_height="1dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintTop_toBottomOf="@+id/activity_champion_pb_difficulty"
+                android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"/>
+        <View
+                android:id="@+id/activity_champion_divider_3"
+                android:layout_width="395dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/activity_champion_tv_champion_tags"
+                android:layout_marginTop="16dp"/>
+        <android.support.v7.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:layout_marginStart="8dp"
+                android:id="@+id/activity_champion_rv_skins" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_champion_divider_4"
+                android:layout_marginTop="8dp"/>
+        <View
+                android:id="@+id/activity_champion_divider_4"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@+id/activity_champion_tv_spell_description_4"
                 android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"/>

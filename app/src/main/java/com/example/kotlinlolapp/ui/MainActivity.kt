@@ -7,11 +7,9 @@ import android.support.v7.widget.RecyclerView
 import com.example.kotlinlolapp.R
 import com.example.kotlinlolapp.logic.KotlinLolApp
 import android.support.v7.widget.DividerItemDecoration
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -115,17 +113,3 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 }
-
-/*
-
-
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Support" android:id="@+id/menu_main_activity_support" android:checkable="true"/>
-    <item android:title="Marksman" android:id="@+id/menu_main_activity_marksman" android:checkable="true"/>
-    <item android:title="Assassin" android:id="@+id/menu_main_activity_assassin" android:checkable="true"/>
-    <item android:title="Mage" android:id="@+id/menu_main_activity_mage" android:checkable="true"/>
-    <item android:title="Tank" android:id="@+id/menu_main_activity_tank" android:checkable="true"/>
-    <item android:checkable="true" android:id="@+id/menu_main_activity_fighter" android:title="Fighter"/>
-</menu>
- */
